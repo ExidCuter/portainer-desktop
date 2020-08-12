@@ -1,0 +1,27 @@
+{
+  "name": "portainer-desktop",
+  "version": "1.0.0",
+  "description": "Portainer PWA for desktop",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "org.td-fl.portainer-desktop",
+    "productName": "Portainer Desktop"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "portainer",
+    "PWA",
+    "Deskop app"
+  ],
+  "author": "Domen Jesenovec",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^9.2.0",
+    "electron-builder": "^22.8.0"
+  }
+}
