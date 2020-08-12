@@ -10,7 +10,32 @@
   },
   "build": {
     "appId": "org.td-fl.portainer-desktop",
-    "productName": "Portainer Desktop"
+    "productName": "Portainer Desktop",
+    "dmg": {
+      "contents": [
+        {
+          "x": 300,
+          "y": 220
+        },
+        {
+          "x": 600,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "iconTextSize": "14",
+      "window": {
+        "width": "900",
+        "height": "455"
+      }
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
