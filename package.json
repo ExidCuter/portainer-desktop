@@ -31,6 +31,7 @@
       }
     },
     "linux": {
+      "maintainer": "domenjes@gmail.com",
       "target": [
         "AppImage",
         "deb"
