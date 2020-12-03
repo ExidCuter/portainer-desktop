@@ -1,12 +1,12 @@
 {
   "name": "portainer-desktop",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Portainer PWA for desktop",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder -mwl"
   },
   "build": {
     "appId": "org.td-fl.portainer-desktop",
@@ -47,11 +47,10 @@
   "author": "Domen Jesenovec",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^9.2.0",
+    "electron": "^11.0.3",
     "electron-builder": "^22.8.0"
   },
   "dependencies": {
-    "electron-context-menu": "^2.3.0",
-    "remote": "^0.2.6"
+    "electron-context-menu": "^2.3.0"
   }
 }
