@@ -1,8 +1,8 @@
 version: "3"
 services:
   portainer:
-    image: "portainer/portainer"
-    container_name: "portainer2"
+    image: "portainer/portainer-ce:latest"
+    container_name: "portainer"
     ports:
       - "8000:8000"
       - "9000:9000"

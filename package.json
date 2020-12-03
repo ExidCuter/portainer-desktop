@@ -49,5 +49,9 @@
   "devDependencies": {
     "electron": "^9.2.0",
     "electron-builder": "^22.8.0"
+  },
+  "dependencies": {
+    "electron-context-menu": "^2.3.0",
+    "remote": "^0.2.6"
   }
 }
