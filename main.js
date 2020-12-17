@@ -5,14 +5,13 @@ contextMenu({
     prepend: (defaultActions, params, browserWindow) => [
         {
             label: 'Search Google for “{selection}”',
-            // Only show it when right-clicking text
             visible: params.selectionText.trim().length > 0,
             click: () => {
                 shell.openExternal(`https://google.com/search?q=${encodeURIComponent(params.selectionText)}`);
             }
         }
     ],
-    showInspectElement: false
+    showInspectElement: true
 });
 
 function createWindow() {
@@ -26,7 +25,18 @@ function createWindow() {
         }
     });
 
-    mainWindow.loadURL('http://localhost:9000');
+    mainWindow.loadURL('http://localhost:9000').then(() => {
+        setTimeout(() => {
+            let loginScript = `
+                var elName = angular.element(document.getElementById("username"));
+                var $scope = elName.scope();
+                $scope.$parent.ctrl.formValues = {Username: "admin", Password: "password"};
+                document.getElementsByClassName("btn")[0].click();
+            `;
+
+            mainWindow.webContents.executeJavaScript(loginScript).then(() => console.log("Login successful"));
+        }, 100);
+    });
 }
 
 app.whenReady().then(() => {
