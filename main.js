@@ -11,7 +11,7 @@ contextMenu({
             }
         }
     ],
-    showInspectElement: true
+    showInspectElement: false
 });
 
 function createWindow() {
