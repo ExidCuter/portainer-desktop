@@ -1,0 +1,185 @@
+div#content-wrapper {
+    background-color: #262e32;
+}
+
+html {
+    background-color: #262e32 !important;
+}
+
+body {
+    background-color: #262e32 !important;
+}
+
+::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #353a40;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar-corner {
+    background: #262e32;
+}
+
+div#content-wrapper a {
+    color: #358fde !important;
+}
+
+div#content-wrapper a.btn-primary {
+    color: #ffffff !important;
+
+}
+
+.row.header {
+    color: white;
+    background-color: #17191f !important;
+}
+
+.actionBar.ng-scope {
+    color: white;
+    background-color: #17191f;
+}
+
+.widget-content {
+    background-color: #23272B;
+    color: white;
+}
+
+.datatable .toolBar {
+    background-color: #17191f !important;
+    color: white !important;
+}
+
+.footer {
+    background-color: #17191f !important;
+    color: white !important;
+}
+
+.widget-header {
+    background-color: #17191f !important;
+    color: white !important;
+    border: none !important;
+}
+
+.widget {
+    background-color: #23272B !important;
+    color: white !important;
+    border-color: #23272B !important;
+}
+
+.blocklist-item {
+    border: 1px solid #23272B !important;
+    box-shadow: 0 3px 10px -2px hsla(0, 0%, 2%, 0.5) !important;
+}
+
+.datatable .searchBar {
+    border-top: 1px solid #050505 !important;
+    border-bottom: 1px solid #050505 !important;
+}
+
+select {
+    background-color: #23272B !important;
+    color: white !important;
+    border: 1px solid #31393d !important;
+}
+
+.widget-body {
+    background-color: #23272B !important;
+    color: white !important;
+    border-color: #23272B !important;
+}
+
+thead {
+    color: white;
+    background-color: #17191f !important;
+}
+
+th {
+    color: white !important;
+    border-color: #3b4249 !important;
+}
+
+
+td {
+    background-color: #23272B !important;
+    color: white !important;
+    border-color: #3b4249 !important;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.form-control {
+    color: white !important;
+    background-color: #23272B !important;
+    border-color: #31393d !important;
+}
+
+.input-group-addon {
+    color: white !important;
+    background-color: #30363d !important;
+    border-color: #31393d !important;
+}
+
+
+.key {
+    color: white !important;
+}
+
+.leaf-value {
+    color: #c9c9c9 !important;
+}
+
+.branch-preview {
+    color: #acacac !important;
+}
+
+json-tree {
+    color: #358fde !important;
+}
+
+pre {
+    color: white !important;
+    background-color: #30363d !important;
+    border-color: #31393d !important;
+}
+
+.log_viewer .line_selected {
+    background-color: #535353 !important;
+}
+
+
+.blocklist-item--selected, .blocklist-item:hover {
+    background-color: #383f45 !important;
+    color: #358fde !important;
+}
+
+.boxselector_wrapper {
+    color: #23272B;
+}
+
+.nav-item {
+    background-color: #383f45 !important;
+    color: #358fde !important;
+}
+
+.nav-link {
+    background-color: #383f45 !important;
+    color: #358fde !important;
+    border-color: transparent !important;
+}
+
+.nav-tabs {
+    border-color: #31393d !important;
+}
+
+code {
+    background-color: #383f45 !important;
+    color: #de5151 !important;
+    border-color: transparent !important;
+}

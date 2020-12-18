@@ -1,5 +1,10 @@
-const {app, BrowserWindow} = require('electron');
+const {Menu, app, dialog, shell, BrowserWindow} = require('electron');
 const contextMenu = require('electron-context-menu');
+const Store = require('electron-store');
+const fs = require('fs');
+const defaultMenu = require('electron-default-menu');
+
+const store = new Store();
 
 contextMenu({
     prepend: (defaultActions, params, browserWindow) => [
@@ -22,6 +27,31 @@ function createWindow() {
             nodeIntegration: true,
             webviewTag: true,
             allowRunningInsecureContent: true,
+        }
+    });
+
+    const menu = defaultMenu(app, shell);
+
+    menu[1].submenu.push({
+        label: 'Dark Mode',
+        type: "checkbox",
+        checked: store.get("darkMode"),
+        click: (item, focusedWindow) => {
+            store.set("darkMode", !store.get("darkMode"));
+            mainWindow.webContents.reload();
+        },
+    });
+
+    Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
+
+    mainWindow.webContents.on('did-finish-load', function () {
+        if (store.get("darkMode")) {
+            fs.readFile(__dirname + '/dark-theme.css', "utf-8", function (error, data) {
+                if (!error) {
+                    let formattedData = data.replace(/\s{2,10}/g, ' ').trim();
+                    mainWindow.webContents.insertCSS(formattedData);
+                }
+            });
         }
     });
 
