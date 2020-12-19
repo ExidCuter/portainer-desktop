@@ -32,7 +32,8 @@ function createWindow() {
 
     const menu = defaultMenu(app, shell);
 
-    menu[1].submenu.push({
+    menu[2].submenu.push({type:"separator"})
+    menu[2].submenu.push({
         label: 'Dark Mode',
         type: "checkbox",
         checked: store.get("darkMode"),
