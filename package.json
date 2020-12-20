@@ -1,6 +1,6 @@
 {
   "name": "portainer-desktop",
-  "version": "1.3.0",
+  "version": "1.3.2",
   "description": "Portainer PWA for desktop",
   "main": "main.js",
   "scripts": {
@@ -51,8 +51,10 @@
     "electron-builder": "^22.8.0"
   },
   "dependencies": {
+    "electron-alert": "^0.1.11",
     "electron-context-menu": "^2.3.0",
     "electron-default-menu": "^1.0.2",
-    "electron-store": "^6.0.1"
+    "electron-store": "^6.0.1",
+    "sweetalert2": "^10.12.5"
   }
 }
