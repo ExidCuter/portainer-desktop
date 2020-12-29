@@ -21,7 +21,8 @@ contextMenu({
 });
 
 function createWindow() {
-    const mainWindow = new BrowserWindow({
+    let error = false;
+    let browserOptions = {
         width: 1400,
         height: 900,
         webPreferences: {
@@ -29,7 +30,15 @@ function createWindow() {
             webviewTag: true,
             allowRunningInsecureContent: true,
         }
-    });
+    }
+
+    if (process.platform === "linux") {
+        browserOptions = Object.assign({}, browserOptions, {
+            icon: "../build/icon.png"
+        });
+    }
+
+    const mainWindow = new BrowserWindow(browserOptions);
 
     const menu = defaultMenu(app, shell);
 
@@ -115,7 +124,7 @@ function createWindow() {
     Menu.setApplicationMenu(Menu.buildFromTemplate(menu));
 
     mainWindow.webContents.on('did-finish-load', function () {
-        if (store.get("darkMode")) {
+        if (store.get("darkMode") && !error) {
             fs.readFile(__dirname + '/dark-theme.css', "utf-8", function (error, data) {
                 if (!error) {
                     let formattedData = data.replace(/\s{2,10}/g, ' ').trim();
@@ -139,7 +148,8 @@ function createWindow() {
                 mainWindow.webContents.executeJavaScript(loginScript).then(() => console.log("Login successful"));
             }, 100);
         }
-    }).catch((err) => {
+    }).catch(() => {
+        error = true;
         mainWindow.loadFile("instructions.html")
     });
 }

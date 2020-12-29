@@ -1,6 +1,6 @@
 {
   "name": "portainer-desktop",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Portainer PWA for desktop",
   "main": "main.js",
   "scripts": {
@@ -11,6 +11,12 @@
   "build": {
     "appId": "org.td-fl.portainer-desktop",
     "productName": "Portainer Desktop",
+    "extraResources": [
+      {
+        "from": "build/icon.png",
+        "to": "build/icon.png"
+      }
+    ],
     "dmg": {
       "contents": [
         {
@@ -31,14 +37,15 @@
       }
     },
     "linux": {
-      "maintainer": "domenjes@gmail.com",
+      "maintainer": "Domen Jesenovec <domenjes@gmail.com>",
       "target": [
-        "AppImage",
-        "deb"
-      ]
+        "AppImage"
+      ],
+      "icon": "./build/icon.png",
+      "category": "Utilities"
     }
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/ExidCuter/portainer-desktop",
   "keywords": [
     "portainer",
     "PWA",
@@ -47,8 +54,8 @@
   "author": "Domen Jesenovec",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^11.0.3",
-    "electron-builder": "^22.8.0"
+    "electron": "^11.1.1",
+    "electron-builder": "^22.9.1"
   },
   "dependencies": {
     "electron-alert": "^0.1.11",
