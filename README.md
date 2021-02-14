@@ -14,7 +14,7 @@
 1. Install Docker and docker-compose
 2. Run `docker-compose up -d` <-- this will run a Portainer docker container with user `admin:password`
 4. Download [latest release](https://github.com/ExidCuter/docker-registry-explorer-plugin/releases/latest) or run `npm install` and run the app with `electron .` or build the app with `electron-builder`.
-5. By default Portainer is running on `localhost:9000`. Endpoint location can be changed in the `config` menu.
+5. By default, Portainer is running on `localhost:9000`. Endpoint location can be changed in the `config` menu.
 
 ## Auto Login
 Auto login can be enabled in the `Config` menu.

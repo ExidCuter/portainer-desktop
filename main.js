@@ -1,11 +1,12 @@
 const fs = require('fs');
-const {Menu, app, dialog, shell, BrowserWindow} = require('electron');
-const contextMenu = require('electron-context-menu');
+const {Menu, Notification, app, shell, BrowserWindow} = require('electron');
 const Store = require('electron-store');
+const prompt = require('native-prompt')
+const contextMenu = require('electron-context-menu');
 const defaultMenu = require('electron-default-menu');
-const Alert = require('electron-alert')
 
 const store = new Store();
+const urlRegex = new RegExp("((([A-Za-z]{3,9}:(?:\\/\\/)?)(?:[-;:&=\\+\\$,\\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\\+\\$,\\w]+@)[A-Za-z0-9.-]+)((?:\\/[\\+~%[\\]\\/.\\w-_]*)?\\??(?:[-\\+=&;%@.\\w_]*)#?(?:[\\w]*))?)");
 
 contextMenu({
     prepend: (defaultActions, params, browserWindow) => [
@@ -17,7 +18,7 @@ contextMenu({
             }
         }
     ],
-    showInspectElement: true
+    showInspectElement: false
 });
 
 function createWindow() {
@@ -71,19 +72,15 @@ function createWindow() {
             },
             {
                 label: 'Set Endpoint',
-                click: (item, focusedWindow) => {
-                    let options = {
-                        title: "Enter the Portainer Endpoint",
-                        input: "text",
-                        inputAttributes: {
-                            autocapitalize: 'off'
-                        },
-                        showCancelButton: true,
-                    };
-
-                    new Alert(null, true).fireWithFrame(options, null, mainWindow, false).then((endpoint) => {
-                        if (endpoint.value) {
-                            store.set("endpoint", endpoint.value);
+                click: () => {
+                    prompt("Set Portainer Endpoint", "Enter the Portainer Endpoint.\t\t\t\t\t").then(endpoint => {
+                        if (endpoint) {
+                            if (urlRegex.test(endpoint)) {
+                                store.set("endpoint", endpoint);
+                                new Notification({title: "Portainer Endpoint Set!", body: `Endpoint has been set to: "${endpoint}"`}).show()
+                            } else {
+                                new Notification({title: "Endpoint is not a valid url!", body: "Please specify a valid endpoint url."}).show()
+                            }
                         }
                     });
                 },
@@ -93,25 +90,15 @@ function createWindow() {
             },
             {
                 label: 'Set Credentials',
-                click: (item, focusedWindow) => {
-                    let options = {
-                        title: "Enter the Portainer Username",
-                        input: "text",
-                        inputAttributes: {
-                            autocapitalize: 'off'
-                        },
-                        showCancelButton: true,
-                    };
+                click: () => {
+                    prompt("Username", "Enter the Portainer Username.\t\t\t\t\t").then(username => {
+                        if (username) {
+                            prompt("Password", `Enter ${username}'s password?\t\t\t\t\t`, {mask: true}).then(password => {
+                                if (password) {
+                                    store.set("username", username);
+                                    store.set("password", password);
 
-                    new Alert(null, true).fireWithFrame(options, null, mainWindow, false).then((usernameRes) => {
-                        if (usernameRes.value) {
-                            options.title = `Enter ${usernameRes.value}'s password?`
-                            options.input = "password";
-
-                            new Alert().fireWithFrame(options, null, null, true).then((passwordRes) => {
-                                if (passwordRes.value) {
-                                    store.set("username", usernameRes.value);
-                                    store.set("password", passwordRes.value);
+                                    new Notification({title: "Username and Password Updated!", body: !store.get("autoLogin") ? "You can enable autologin in the config menu" : ""}).show()
                                 }
                             });
                         }

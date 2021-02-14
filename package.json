@@ -1,6 +1,6 @@
 {
   "name": "portainer-desktop",
-  "version": "1.3.3",
+  "version": "1.4.0",
   "description": "Portainer PWA for desktop",
   "main": "main.js",
   "scripts": {
@@ -11,10 +11,15 @@
   "build": {
     "appId": "org.td-fl.portainer-desktop",
     "productName": "Portainer Desktop",
+    "asar": false,
     "extraResources": [
       {
         "from": "build/icon.png",
         "to": "build/icon.png"
+      },
+      {
+        "from": "build/portainer.png",
+        "to": "build/portainer.png"
       }
     ],
     "dmg": {
@@ -58,10 +63,9 @@
     "electron-builder": "^22.9.1"
   },
   "dependencies": {
-    "electron-alert": "^0.1.11",
-    "electron-context-menu": "^2.3.0",
+    "electron-context-menu": "^2.4.0",
     "electron-default-menu": "^1.0.2",
     "electron-store": "^6.0.1",
-    "sweetalert2": "^10.12.5"
+    "native-prompt": "^2.1.4"
   }
 }
