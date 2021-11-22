@@ -1,25 +1,23 @@
 {
   "name": "portainer-desktop",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Portainer PWA for desktop",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder -l"
+    "start": "markdown-to-html && electron .",
+    "instr": "markdown-to-html",
+    "pack": "markdown-to-html && electron-builder --dir",
+    "dist": "markdown-to-html && electron-builder -lw",
+    "dist-mac": "markdown-to-html && electron-builder -m"
   },
   "build": {
     "appId": "org.td-fl.portainer-desktop",
     "productName": "Portainer Desktop",
-    "asar": false,
+    "asar": true,
     "extraResources": [
       {
         "from": "build/icon.png",
         "to": "build/icon.png"
-      },
-      {
-        "from": "build/portainer.png",
-        "to": "build/portainer.png"
       }
     ],
     "dmg": {
@@ -44,10 +42,25 @@
     "linux": {
       "maintainer": "Domen Jesenovec <domenjes@gmail.com>",
       "target": [
-        "AppImage"
+        "AppImage",
+        "deb"
       ],
-      "icon": "./build/icon.png",
       "category": "Utilities"
+    },
+    "directories": {
+      "buildResources": "build"
+    },
+    "files": [
+      "build/**/*",
+      "main.js",
+      "index.html",
+      "dark-theme.css"
+    ]
+  },
+  "markdown-to-html": {
+    "document": {
+      "title": "Portainer Desktop Instructions",
+      "description": "How to setup Portainer Desktop."
     }
   },
   "repository": "https://github.com/ExidCuter/portainer-desktop",
@@ -59,13 +72,14 @@
   "author": "Domen Jesenovec",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^11.1.1",
-    "electron-builder": "^22.9.1"
+    "electron": "^16.0.0",
+    "electron-builder": "^22.14.5",
+    "markdown-to-html-cli": "^3.1.6"
   },
   "dependencies": {
     "electron-context-menu": "^2.4.0",
     "electron-default-menu": "^1.0.2",
-    "electron-store": "^6.0.1",
+    "electron-store": "^8.0.1",
     "native-prompt": "^2.1.4"
   }
 }

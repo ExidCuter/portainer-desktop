@@ -35,7 +35,7 @@ function createWindow() {
 
     if (process.platform === "linux") {
         browserOptions = Object.assign({}, browserOptions, {
-            icon: "../build/icon.png"
+            icon: __dirname + "/build/icon.png"
         });
     }
 
@@ -132,12 +132,14 @@ function createWindow() {
                     document.getElementsByClassName("btn")[0].click();
                 `;
 
-                mainWindow.webContents.executeJavaScript(loginScript).then(() => console.log("Login successful"));
+                mainWindow.webContents.executeJavaScript(loginScript)
+                    .then(() => console.log("Login successful"))
+                    .catch(() => {console.log("Login failed (probably already logged in)")});
             }, 100);
         }
     }).catch(() => {
         error = true;
-        mainWindow.loadFile("instructions.html")
+        mainWindow.loadFile("index.html")
     });
 }
 
